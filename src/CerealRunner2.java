@@ -37,24 +37,28 @@ public class CerealRunner2 {
 
 
         try{
-            File cereaFile = new File ("cerealSubset.csv");
+            File cerealFile = new File ("cerealSubset.csv");
             Scanner fileScanner = new Scanner(cerealFile);
 
             while (true){
                 if(!fileScanner.hasNextLine()){
                     fileScanner.close();
-                    System.out.println("Loaded" + cereals.size() + "cereals.\n")
+                    System.out.println("Loaded " + cereals.size() + " Cereals.\n");
+                    break;
                 }
                 String theNextLine = fileScanner.nextLine();
                 String[] splitData = theNextLine.split(",");
                 String name = splitData[0];
                 int calories = Integer.parseInt(splitData[1]);
-                int calories = Integer.parseInt(splitData[1]);
-                int calories = Integer.parseInt(splitData[1]);
+                int fiber = Integer.parseInt(splitData[2]);
+                int carbohydrates = Integer.parseInt(splitData[3]);
+                double cups = Double.parseDouble(splitData[4]);
 
-                cereals.add(newCereal(name,calories,));
+                cereals.add(new Cereal(name,calories,fiber,carbohydrates,cups));
             }
-        } catch (Exception e)
+        } catch (Exception e){
+            System.out.println("No Data Found" + e);
+        }
 
         
 
@@ -66,7 +70,7 @@ public class CerealRunner2 {
      * Getter method for the cereals ArrayList
      */
     public ArrayList<Cereal> getCereals() {
-        return null;  // Fix this
+        return cereals;  
     }
 
     /**
@@ -74,7 +78,7 @@ public class CerealRunner2 {
      */
     public static void main(String[] args) {
         // Create a CerealRunner2 object
-
+        CerealRunner2 theInstanceOfThisFile = new CerealRunner2();
 
         // Print the number of records created
         // Should output: "76 records created."
