@@ -31,15 +31,20 @@ public class CerealRunner3 {
      * @param max maximum carbs per cup (inclusive)
      * @return ArrayList of cereals meeting criteria
      */
-    public static ArrayList<Cereal> filterCarbsPerCup(int min, int max) {
+    public static ArrayList<Cereal> filterCarbsPerCup(int min, int max, ArrayList<Cereal> cereals) {
+    ArrayList<Cereal> filtered = new ArrayList<>();
 
-        for(String cereal : Cereal){
-            if(min< carbs % cups < max){
-                filterCarbsPerCup.add(cereal);
-            }
+    for (Cereal cereal : cereals) {
+        double carbsPerCup = cereal.getCarbohydrates() / cereal.getCups();
+
+        if (carbsPerCup > min && carbsPerCup < max) {
+            filtered.add(cereal);
         }
-        return null;  // Replace with your code
     }
+
+    return filtered;
+}
+
 
     /**
      * Part B: Find cereal with highest fiber percentage
@@ -58,13 +63,25 @@ public class CerealRunner3 {
      *
      * @return Cereal with highest fiber percentage, or null if empty
      */
+    
     public static Cereal highestPercentFiber() {
-
-
-
-
-        return null;  // Replace with your code
+    if (cereals.size() == 0) {
+        return null;
     }
+
+    Cereal bestSoFar = cereals.get(0);
+    double bestPercent = (double) bestSoFar.getFiber() / bestSoFar.getCalories();
+
+    for (int i = 1; i < cereals.size(); i++) {
+        Cereal currentCereal = cereals.get(i);
+        double currentPercent = (double) currentCereal.getFiber() / currentCereal.getCalories();
+
+        if (currentPercent > bestPercent) {
+            bestSoFar = currentCereal;
+        }
+    }
+    return bestSoFar;
+}
 
     /**
      * Part C: Calculate net carbs
@@ -75,11 +92,9 @@ public class CerealRunner3 {
      * @return net carbs
      */
     public static double findNetCarbs(Cereal c) {
-
-
-
-        return 0;  // Replace with your code
+    return c.getCarbohydrates() - c.getFiber();
     }
+
 
     // ========================================================================
     // DO NOT EDIT BELOW THIS LINE
