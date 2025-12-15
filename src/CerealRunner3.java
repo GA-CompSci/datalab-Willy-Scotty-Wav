@@ -33,9 +33,9 @@ public class CerealRunner3 {
      */
     public static ArrayList<Cereal> filterCarbsPerCup(int min, int max) {
 
-        for(Cereal i : cereals){
+        for(String cereal : Cereal){
             if(min< carbs % cups < max){
-                filterCarbsPerCup.add(cereal)
+                filterCarbsPerCup.add(cereal);
             }
         }
         return null;  // Replace with your code
