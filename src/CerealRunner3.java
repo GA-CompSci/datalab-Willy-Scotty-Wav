@@ -31,13 +31,14 @@ public class CerealRunner3 {
      * @param max maximum carbs per cup (inclusive)
      * @return ArrayList of cereals meeting criteria
      */
-    public static ArrayList<Cereal> filterCarbsPerCup(int min, int max, ArrayList<Cereal> cereals) {
+    public static ArrayList<Cereal> filterCarbsPerCup(int min, int max) {
     ArrayList<Cereal> filtered = new ArrayList<>();
 
     for (Cereal cereal : cereals) {
         double carbsPerCup = cereal.getCarbohydrates() / cereal.getCups();
 
-        if (carbsPerCup > min && carbsPerCup < max) {
+        if (carbsPerCup >= min && carbsPerCup <= max) {
+            
             filtered.add(cereal);
         }
     }
